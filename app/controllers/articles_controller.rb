@@ -1,5 +1,6 @@
 
 class ArticlesController < ApplicationController
+  skip_before_action :authenticate_user!, :only => [:index]
   def index
      @articles = Article.search(params).paginate(page: params[:page], per_page: 5)
   end

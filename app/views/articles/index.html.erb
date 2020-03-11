@@ -1,44 +1,46 @@
-<div class='col-md-12'>
-  <div class='row'>
-    <div class='col-md-12'>
-      <h1 class='text-center'>Listing Articles</h1>
+<div class='row'>
+  <div class='col-md-12'>
+    <div class='row'>
+      <div class='col-md-12'>
+        <h1 class='text-center'>Listing Articles</h1>
+      </div>
     </div>
-  </div>
-  <div class='row text-center'>
-    <div class='col-md-12'>
-      <%= form_tag articles_path, method: :get do %>
-        <%= text_field_tag :search, "" %>
-        <%= submit_tag 'Search' %>
-      <% end %>
+    <div class='row text-center'>
+      <div class='col-md-12'>
+        <%= form_tag articles_path, method: :get do %>
+          <%= text_field_tag :search, "" %>
+          <%= submit_tag 'Search' %>
+        <% end %>
+      </div>
     </div>
-  </div>
-  </br>
-  <div class='row'>
-    <table class="table table-bordered">
-      <tr>
-        <th>Id</th>
-        <th>Title</th>
-        <th>Text</th>
-        <th>Status</th>
-        <th>Categories</th>
-        <th>Action</th>
-      </tr>
-    
-      <% @articles.each do |article| %>
+    </br>
+    <div class='row'>
+      <table class="table table-bordered">
         <tr>
-          <td><%= article.id %></td>
-          <td><%= article.title %></td>
-          <td><%= sanitize(article.text) %></td>
-          <td><%= article.status %></td>
-          <td><%= article.categories.pluck(:title).join(",") %></td>
-          <td><%= link_to 'Show', article_path(article) %></td>
+          <th>Id</th>
+          <th>Title</th>
+          <th>Text</th>
+          <th>Status</th>
+          <th>Categories</th>
+          <th>Action</th>
         </tr>
-      <% end %>
-    </table>
-  </div>
-  <div class='row'>
-    <div class='col-md-12 text-center'>
-      <%= will_paginate @articles %>
+      
+        <% @articles.each do |article| %>
+          <tr>
+            <td><%= article.id %></td>
+            <td><%= article.title %></td>
+            <td><%= sanitize(article.text) %></td>
+            <td><%= article.status %></td>
+            <td><%= article.categories.pluck(:title).join(",") %></td>
+            <td><%= link_to 'Show', article_path(article) %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class='row'>
+      <div class='col-md-12 text-center'>
+        <%= will_paginate @articles %>
+      </div>
     </div>
   </div>
 </div>
